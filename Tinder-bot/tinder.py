@@ -75,16 +75,27 @@ class Tinder(webdriver.Chrome):
 
     def like(self):
         while True:
-            time.sleep(1)
+            sleep(0.5)
             try:
-                self.find_element_by_xpath(
-                    '/html/body/div[1]/div/div[1]/div/main/div[1]/div/div/div[1]/div[1]/div/div[4]/div/div[4]/button'
-                ).click()
+                self.driver.find_element_by_xpath(
+                    '/html/body/div[1]/div/div[1]/div/main/div[1]/div/div/div[1]/div/div[2]/div[4]/button').click()
             except Exception:
                 try:
-                    self.find_element_by_xpath('/html/body/div[2]/div/div/div/div[3]/button[2]/span').click()
-                except:
-                    print('Not working')
+                    self.driver.find_element_by_xpath(
+                        '//*[@id="modal-manager-canvas"]/div/div/div[1]/div/div[3]/a').click()
+
+                except Exception:
+                    try:
+                        self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div[2]/button[2]').click()
+                    except Exception:
+                        try:
+                            self.driver.find_element_by_xpath(
+                                '//*[@id="modal-manager"]/div/div/div[2]/button[2]').click()
+                        except Exception:
+                            try:
+                                self.driver.find_element_by_xpath('/html/body/div[2]/div/div/button[2]').click()
+                            except:
+                                self.driver.close()
         
 
 
